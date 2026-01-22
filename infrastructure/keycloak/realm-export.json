@@ -1,0 +1,20 @@
+{
+    "realm": "trencadis-home",
+    "enabled": true,
+    "roles": {
+      "realm": [
+        { "name": "admin", "description": "System Administrator" },
+        { "name": "user", "description": "Standard House Member" }
+      ]
+    },
+    "clients": [
+      {
+        "clientId": "trencadis-frontend",
+        "enabled": true,
+        "publicClient": true,
+        "directAccessGrantsEnabled": true,
+        "webOrigins": ["http://localhost:4200"],
+        "redirectUris": ["http://localhost:4200/*"]
+      }
+    ]
+  }
