@@ -1,0 +1,24 @@
+# General
+.DS_Store
+.idea/
+.vscode/
+*.log
+
+# Python
+__pycache__/
+*.py[cod]
+venv/
+.env
+
+# Go
+bin/
+obj/
+
+# Java
+target/
+*.class
+*.jar
+
+# Angular
+dist/
+node_modules/

@@ -35,3 +35,24 @@ This project follows the **Clean Architecture** principles by Robert C. Martin. 
 - **SOLID Principles:** Strictly followed across all languages.
 - **Testing:** Unit and Integration tests for every business use case.
 - **Documentation:** Architecture decision records (ADR) and C4 Diagrams.
+
+## 📐 Engineering Principles
+
+This project serves as a practical implementation of high-level software engineering standards.
+
+### Clean Architecture (by Robert C. Martin)
+The architecture is structured in concentric layers, where dependencies only point inwards. This ensures that the **Business Logic (Domain)** is:
+- **Independent of Frameworks:** The UI, Database, and external tools are treated as plugins.
+- **Testable:** Logic can be tested without an external server or database.
+- **Independent of UI:** The UI can change without changing the rest of the system.
+
+### SOLID Principles
+Every module in **Trencadís** is built with these principles in mind:
+- **S**ingle Responsibility: Each class or function has one, and only one, reason to change.
+- **O**pen/Closed: Software entities are open for extension but closed for modification.
+- **L**iskov Substitution: Objects are replaceable with instances of their subtypes without altering correctness.
+- **I**nterface Segregation: Clients should not be forced to depend on methods they do not use.
+- **D**ependency Inversion: High-level modules do not depend on low-level modules; both depend on abstractions.
+
+## Author
+by AFelipeTrujillo
