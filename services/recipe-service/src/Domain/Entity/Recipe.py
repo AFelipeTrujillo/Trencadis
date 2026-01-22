@@ -2,8 +2,10 @@
 # It defines the Recipe entity with its attributes.
 # It uses dataclasses for simplicity and type annotations for clarity.
 from dataclasses import dataclass, field
-# Importing UUID for unique identification of the recipe owner
 from uuid import UUID, uuid4
+from typing import List
+from Domain.ValueObject.Ingredient import Ingredient
+from Domain.Exception.IngredientAlreadyExistsException import IngredientAlreadyExistsException
 
 
 @dataclass
@@ -13,4 +15,10 @@ class Recipe:
     owner_id: UUID
     # Automatically generate a unique identifier for each recipe
     id: UUID = field(default_factory=uuid4)
-    ingredients: list[str] = field(default_factory=list)
+    ingredients: List[Ingredient] = field(default_factory=list)
+
+    def add_ingredient(self, ingredient: Ingredient) -> None:
+        """Adds an ingredient to the recipe."""
+        if ingredient not in self.ingredients:
+            raise IngredientAlreadyExistsException(ingredient_name=ingredient.name)
+        self.ingredients.append(ingredient)
