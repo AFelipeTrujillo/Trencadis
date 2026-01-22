@@ -2,9 +2,9 @@
 
 ## Domain
 
-### Entities
+### Entities
 
-#### Recipe
+#### 1. Recipe
 
 ```python
 from dataclasses import dataclass, field
@@ -28,21 +28,22 @@ The **@dataclass** decorator is a utility provided by the dataclasses module tha
 
 ### Value Objects
 
-#### Ingredients
+#### 1. Ingredients
 
 ```python
 from dataclasses import dataclass
+from Domain.ValueObject.MeasurementUnit import MeasurementUnit
 
 @dataclass(frozen=True)
 class Ingredient:
     name: str
     amount: float
-    unit: str
+    unit: MeasurementUnit
 ```
 
 The **frozen=True** parameter makes the instances of a dataclass immutable. Once an object is initialized, its fields cannot be assigned new values. This also makes the object hashable, allowing it to be used as a key in a dictionary or an element in a set.
 
-#### Measurement Unit
+#### 2. Measurement Unit
 
 ```python
 from enum import Enum
@@ -69,7 +70,7 @@ An **Enum (Enumeration)** is a symbolic name for a set of related constant value
 
 ### Exceptions
 
-#### IngredientAlreadyExistsException
+#### 1. IngredientAlreadyExistsException
 
 Exception raised when trying to add an ingredient that already exists in the recipe.
 
