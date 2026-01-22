@@ -43,7 +43,25 @@ class Ingredient:
 The **frozen=True** parameter makes the instances of a dataclass immutable. Once an object is initialized, its fields cannot be assigned new values. This also makes the object hashable, allowing it to be used as a key in a dictionary or an element in a set.
 
 #### Measurement Unit
-Source: MeasurementUnit.py
+
+```python
+from enum import Enum
+
+class MeasurementUnit(Enum):
+    KILOGRAM = "kg"
+    GRAM = "g"
+    POUND = "lb"
+    OUNCE = "oz"
+    LITER = "l"
+    MILLILITER = "ml"
+    GALLON = "gal"
+    METER = "m"
+    CENTIMETER = "cm"
+    INCH = "in"
+    FOOT = "ft"
+    TEASPOON = "tsp"
+    TABLESPOON = "tbsp"
+```
 
 **Notes**
 An **Enum (Enumeration)** is a symbolic name for a set of related constant values that are bound to unique identifiers. In Python, it is implemented as a class that inherits from enum.Enum, allowing you to group related constants together to improve code readability, prevent errors from misspelled strings (typos), and provide a clear structure for variables that should only take one of a predefined set of values.
