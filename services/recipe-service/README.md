@@ -103,7 +103,7 @@ class RecipeRepositoryInterface(ABC):
 
 ### Exceptions
 
-#### 1. IngredientAlreadyExistsException
+#### 1. IngredientAlreadyExistsException
 
 Exception raised when trying to add an ingredient that already exists in the recipe.
 
