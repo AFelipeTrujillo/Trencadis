@@ -41,3 +41,19 @@ class Ingredient:
 ```
 
 The **frozen=True** parameter makes the instances of a dataclass immutable. Once an object is initialized, its fields cannot be assigned new values. This also makes the object hashable, allowing it to be used as a key in a dictionary or an element in a set.
+
+### Exceptions
+
+#### IngredientAlreadyExistsException
+
+Exception raised when trying to add an ingredient that already exists in the recipe.
+
+```python
+from Domain.Exception.DomainException import DomainException
+
+class IngredientAlreadyExistsException(DomainException):
+    """Exception raised when trying to add an ingredient that already exists in the recipe."""
+    def __init__(self, *args, ingredient_name: str = ""):
+        message = f"Ingredient '{ingredient_name}' already exists in the recipe."
+        super().__init__(message, *args)
+```
