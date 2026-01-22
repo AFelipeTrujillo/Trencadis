@@ -32,9 +32,6 @@ This project follows the **Clean Architecture** principles by Robert C. Martin. 
 
 ## 👨‍💻 Engineering Standards
 - **Clean Code:** Self-documenting code, SRP, and meaningful naming.
-
 - **SOLID Principles:** Strictly followed across all languages.
-
 - **Testing:** Unit and Integration tests for every business use case.
-
 - **Documentation:** Architecture decision records (ADR) and C4 Diagrams.
