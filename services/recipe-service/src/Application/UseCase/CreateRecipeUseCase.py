@@ -5,7 +5,8 @@ from Domain.ValueObject.MeasurementUnit import MeasurementUnit
 from uuid import UUID
 
 class CreateRecipeUseCase:
-
+    """ Use case for creating a new recipe. """
+    
     def __init__(self, repository: RecipeRepositoryInterface):
         self.repository = repository
     
@@ -21,6 +22,7 @@ class CreateRecipeUseCase:
             )
             ingredients.append(ingredient)
         
+        # Create the Recipe entity
         recipe = Recipe(
             name=name,
             description=description,
