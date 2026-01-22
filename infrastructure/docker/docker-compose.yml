@@ -17,6 +17,7 @@ services:
   keycloak:
     image: quay.io/keycloak/keycloak:26.0.0
     container_name: trencadis-keycloak
+    # Use the new Keycloak startup command format
     command: start-dev --import-realm
     networks:
       - trencadis-network

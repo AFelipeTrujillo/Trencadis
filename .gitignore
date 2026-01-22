@@ -24,3 +24,14 @@ dist/
 node_modules/
 
 /@plan
+
+# Docker data
+infrastructure/docker/postgres_data/
+
+# IDEs
+.idea/
+.vscode/
+
+# Environment secrets
+.env
+*.env
