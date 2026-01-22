@@ -19,6 +19,6 @@ class Recipe:
 
     def add_ingredient(self, ingredient: Ingredient) -> None:
         """Adds an ingredient to the recipe."""
-        if ingredient not in self.ingredients:
+        if any(i.name == ingredient.name for i in self.ingredients):
             raise IngredientAlreadyExistsException(ingredient_name=ingredient.name)
         self.ingredients.append(ingredient)
