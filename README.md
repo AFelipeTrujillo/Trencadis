@@ -23,12 +23,36 @@ This project follows the **Clean Architecture** principles by Robert C. Martin. 
 - **Infrastructure:** Kubernetes (Orchestration) & GitHub Actions (CI/CD)
 
 ## 🛠 Project Roadmap
-- [ ] **Phase 0: Create repository and project structure** - Current
-- [ ] **Phase 1: Recipe Service (Python)** - Upcoming
-- [ ] **Phase 2: Shopping List (Go)** - Upcoming
-- [ ] **Phase 3: Financial Module (Java)** - Planned
-- [ ] **Phase 4: Dashboard (Angular)** - Planned
-- [ ] **Phase 5: Cloud Native Deployment (K8s)** - Planned
+
+### Phase 1: Core Infrastructure & Identity 🔐
+- [x] Monorepo structure and documentation.
+- [ ] **Identity Management:** Deploy **Keycloak** via Docker for OAuth2/OpenID Connect.
+- [ ] Configure Realms, Clients, and Roles for the Trencadís ecosystem.
+
+### Phase 2: Recipe Service (Python) 🐍
+- [ ] Implement Clean Architecture layers (Domain, Use Cases, Adapters).
+- [ ] **Security:** Integrate JWT validation middleware with Keycloak.
+- [ ] API documentation with Swagger/OpenAPI.
+
+### Phase 3: Shopping List Service (Go) 🐹
+- [ ] High-concurrency service for real-time list management.
+- [ ] Integration with Recipe Service via internal networking.
+- [ ] Unit testing with Go's native testing tool.
+
+### Phase 4: Financial Module (Java) ☕
+- [ ] Enterprise-grade spending tracker using Spring Boot.
+- [ ] Persistence layer with Spring Data JPA.
+- [ ] Advanced security patterns with Spring Security.
+
+### Phase 5: Frontend Dashboard (Angular) 🅰️
+- [ ] Unified UI using Angular 17+ and Tailwind CSS.
+- [ ] **OIDC Integration:** Secure login flow using Keycloak JS adapter.
+- [ ] Reactive state management for real-time updates.
+
+### Phase 6: Cloud Native & DevOps ☁️
+- [ ] **Kubernetes:** Orchestrate all services using Helm charts.
+- [ ] **CI/CD:** Automated pipelines with GitHub Actions.
+- [ ] Monitoring and Logging (ELK or Prometheus/Grafana).
 
 ## 👨‍💻 Engineering Standards
 - **Clean Code:** Self-documenting code, SRP, and meaningful naming.
