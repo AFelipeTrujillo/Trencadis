@@ -1,4 +1,4 @@
-from FastAPI import FastAPI, Depends
+from fastapi import FastAPI, Depends
 from Infrastructure.Delivery.Http.Security.KeycloakGuard import KeycloakGuard
 
 app = FastAPI(title="Trencadís Recipe Service", version="1.0.0")

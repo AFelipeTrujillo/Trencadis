@@ -3,14 +3,18 @@ from fastapi import Depends, HTTPException, status
 from fastapi.security import OAuth2AuthorizationCodeBearer
 from jose import JWTError, jwt
 
+BASE_URL = "http://keycloak:8080/realms//trencadis-home"
+
 oauth2_scheme = OAuth2AuthorizationCodeBearer(
-    tokenUrl="http://localhost:8080/realms/trencadis/protocol/openid-connect/token",
+    authorizationUrl=f"{BASE_URL}/protocol/openid-connect/auth",
+    tokenUrl=f"{BASE_URL}/protocol/openid-connect/token",
+    refreshUrl=f"{BASE_URL}/protocol/openid-connect/token",
 )
 
 class KeycloakGuard:
 
     def __init__(self):
-        self.realm_url = "http://localhost:8080/realms/trencadis"
+        self.realm_url = BASE_URL
         self.public_key = self.get_public_key()
 
     def get_public_key(self) -> str:
