@@ -4,7 +4,7 @@ from fastapi.security import OAuth2AuthorizationCodeBearer
 from jose import JWTError, jwt
 from Infrastructure.Config.Settings import settings
 
-BASE_URL = "http://keycloak:8080/realms//trencadis-home"
+BASE_URL = settings.keycloak_realm_url
 
 oauth2_scheme = OAuth2AuthorizationCodeBearer(
     authorizationUrl=settings.keycloak_auth_url,

@@ -6,7 +6,7 @@ class Settings(BaseSettings):
     PROJECT_NAME: str = "Trencadís Recipe Service"
     DEBUG: bool = False
 
-    KEYCLOAK_BASE_URL : str = Field(default="http://keycloak:8080/realms/", env="KEYCLOAK_BASE_URL")
+    KEYCLOAK_BASE_URL : str = Field(default="http://keycloak:8080", env="KEYCLOAK_BASE_URL")
     KEYCLOAK_REALM : str = Field(default="trencadis-home", env="KEYCLOAK_REALM")
 
     @property
