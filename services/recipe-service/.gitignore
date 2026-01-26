@@ -5,3 +5,8 @@ venv/
 .env
 .pytest_cache/
 .coverage
+
+*.egg-info/
+__pycache__/
+venv/
+.env
