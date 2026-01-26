@@ -13,8 +13,13 @@ class IngredientDTO(BaseModel):
 class CreateRecepieRequest(BaseModel):
     name: str = Field(..., min_length = 2, max_length = 150 ,example="Chocolate Cake")
     description: str = Field(..., max_length = 1000 ,example="A delicious chocolate cake recipe.")
-    ingredients: List[IngredientDTO] = Field(..., min_item = 1, example=[
+    ingredients: List[IngredientDTO] = Field(..., min_length = 1, example=[
         {"name": "Flour", "amount": 200.0, "unit": "g"},
         {"name": "Sugar", "amount": 100.0, "unit": "g"},
         {"name": "Cocoa Powder", "amount": 50.0, "unit": "g"}
     ])
+
+class RecipeListResponse(BaseModel):
+    id: str = Field(..., example="123e4567-e89b-12d3-a456-426614174000")
+    name: str = Field(..., example="Chocolate Cake")
+    description: str = Field(..., example="A delicious chocolate cake recipe.")
