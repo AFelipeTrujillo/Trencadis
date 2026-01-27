@@ -3,15 +3,18 @@ services:
   # PostgreSQL database service for Keycloak
   keycloak-db:
     image: postgres:16-alpine
-    container_name: trencadis-auth-db
+    container_name: trencadis-db-shared
     networks:
       - trencadis-network
+    ports:
+      - "5432:5432"
     environment:
-      POSTGRES_DB: keycloak
+      POSTGRES_MULTIPLE_DATABASES: keycloak,recipe_db
       POSTGRES_USER: ${DB_USER}
       POSTGRES_PASSWORD: ${DB_PASSWORD}
     volumes:
       - postgres_data:/var/lib/postgresql/data
+      - ./pg_init.sql:/docker-entrypoint-initdb.d/pg_init.sql:ro
 
   # Keycloak service
   keycloak:
@@ -52,6 +55,7 @@ services:
       - "8001:8000"
     environment:
       - KEYCLOAK_URL=http://keycloak:8080
+      - DATABASE_URL=postgresql+asyncpg://${DB_USER}:${DB_PASSWORD}@keycloak-db:5432/recipe_db
     depends_on:
       keycloak:
         condition: service_healthy
