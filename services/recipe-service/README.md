@@ -1,4 +1,17 @@
-# Recipe Service
+# Recipe Service - Trencadís
+
+## Core Entities
+- **Recipe**: The central aggregate root. It manages its own state and ensures business rules (like unique ingredients).
+
+### Value Objects
+- **Ingredient**: Immutable object (`frozen=True`) representing a component of a recipe.
+- **MeasurementUnit**: Strongly typed enumeration for units (kg, g, l, etc.).
+
+### Domain Contracts (Interfaces)
+- **RecipeRepositoryInterface**: Abstract base class (ABC) that defines how recipes are persisted, decoupling the domain from the database technology.
+
+### Exceptions
+- **IngredientAlreadyExistsException**: Domain-specific error to prevent data inconsistency.
 
 ## Domain
 
@@ -116,3 +129,23 @@ class IngredientAlreadyExistsException(DomainException):
         message = f"Ingredient '{ingredient_name}' already exists in the recipe."
         super().__init__(message, *args)
 ```
+
+## Security & Identity
+This service acts as an **OAuth2 Resource Server**.
+- **Provider**: Keycloak (OIDC).
+- **Authentication**: JWT validation via `auth_guard`.
+- **Authorization**: Extracts `owner_id` from the token's `sub` claim to ensure data isolation.
+
+## Infrastructure
+
+### Technology Stack
+- **Python 3.11+**
+- **FastAPI** (Web Framework)
+- **Pydantic v2** (Data Validation)
+- **Pytest** (Testing)
+
+## Development
+
+- **Local Setup**: Install dependencies using `pip install -e .`
+- **Run Tests**: Execute pytest in the root directory.
+- **API Docs**: Accessible at http://localhost:8001/docs when running via Docker.
