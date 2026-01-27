@@ -3,23 +3,68 @@
 
 from pydantic import BaseModel, Field, validator
 from typing import List
+from uuid import UUID
 from Domain.ValueObject.MeasurementUnit import MeasurementUnit
 
+
 class IngredientDTO(BaseModel):
-    name: str = Field(..., min_length = 2, max_length = 100 ,example="Sugar")
-    amount: float = Field(..., gt=0, example=100.0)
-    unit: MeasurementUnit = Field(..., example="kg")
+    name: str = Field(
+        ..., 
+        min_length = 2, 
+        max_length = 100 ,
+        json_schema_extra={"example": "Sugar"}
+    )
+    amount: float = Field(
+        ..., 
+        gt=0,
+        json_schema_extra={"example": 100.0}
+    )
+    unit: MeasurementUnit = Field(
+        ..., 
+        json_schema_extra={"example": "g"}
+    )
     
 class CreateRecepieRequest(BaseModel):
-    name: str = Field(..., min_length = 2, max_length = 150 ,example="Chocolate Cake")
-    description: str = Field(..., max_length = 1000 ,example="A delicious chocolate cake recipe.")
-    ingredients: List[IngredientDTO] = Field(..., min_length = 1, example=[
-        {"name": "Flour", "amount": 200.0, "unit": "g"},
-        {"name": "Sugar", "amount": 100.0, "unit": "g"},
-        {"name": "Cocoa Powder", "amount": 50.0, "unit": "g"}
-    ])
+    name: str = Field(
+        ..., 
+        min_length = 2, 
+        max_length = 150 ,
+        json_schema_extra={"example": "Chocolate Cake"}
+    )
+    description: str = Field(
+        ..., 
+        max_length = 1000 ,
+        json_schema_extra={"example": "A delicious chocolate cake recipe."}
+    )
+    ingredients: List[IngredientDTO] = Field(
+        ..., 
+        min_length = 1, 
+        json_schema_extra={
+            "example": [
+                {
+                    "name": "Flour",
+                    "amount": 200.0,
+                    "unit": "g"
+                },
+                {
+                    "name": "Sugar",
+                    "amount": 100.0,
+                    "unit": "g"
+                }
+            ]
+        }
+    )
 
 class RecipeListResponse(BaseModel):
-    id: str = Field(..., example="123e4567-e89b-12d3-a456-426614174000")
-    name: str = Field(..., example="Chocolate Cake")
-    description: str = Field(..., example="A delicious chocolate cake recipe.")
+    id: UUID = Field(
+        ..., 
+        json_schema_extra={"example": "550e8400-e29b-41d4-a716-446655440000"}
+    )
+    name: str = Field(
+        ..., 
+        json_schema_extra={"example": "Chocolate Cake"}
+    )
+    description: str = Field(
+        ..., 
+        json_schema_extra={"example": "A delicious chocolate cake recipe."}
+    )
