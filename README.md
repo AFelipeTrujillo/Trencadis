@@ -26,13 +26,13 @@ This project follows the **Clean Architecture** principles by Robert C. Martin. 
 
 ### Phase 1: Core Infrastructure & Identity 🔐
 - [x] Monorepo structure and documentation.
-- [ ] **Identity Management:** Deploy **Keycloak** via Docker for OAuth2/OpenID Connect.
+- [x] **Identity Management:** Deploy **Keycloak** via Docker for OAuth2/OpenID Connect.
 - [ ] Configure Realms, Clients, and Roles for the Trencadís ecosystem.
 
 ### Phase 2: Recipe Service (Python) 🐍
-- [ ] Implement Clean Architecture layers (Domain, Use Cases, Adapters).
-- [ ] **Security:** Integrate JWT validation middleware with Keycloak.
-- [ ] API documentation with Swagger/OpenAPI.
+- [x] Implement Clean Architecture layers (Domain, Use Cases, Adapters).
+- [x] **Security:** Integrate JWT validation middleware with Keycloak.
+- [x] API documentation with Swagger/OpenAPI.
 
 ### Phase 3: Shopping List Service (Go) 🐹
 - [ ] High-concurrency service for real-time list management.
