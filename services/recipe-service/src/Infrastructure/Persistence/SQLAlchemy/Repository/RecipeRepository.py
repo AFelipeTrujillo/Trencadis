@@ -10,7 +10,7 @@ from Domain.Repository.RecipeRepositoryInterface import RecipeRepositoryInterfac
 from Infrastructure.Persistence.SQLAlchemy.Models.RecipeModel import RecipeModel
 from Infrastructure.Persistence.SQLAlchemy.Mappers.RecipeMapper import RecipeMapper
 
-class SQLAlchemyRecipeRepository(RecipeRepositoryInterface):
+class RecipeRepository(RecipeRepositoryInterface):
 
     def __init__(self, session: AsyncSession):
         self.session = session
