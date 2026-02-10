@@ -27,10 +27,10 @@ async def create_recipe(
     owner_id = UUID(user_data.get("sub"))
     factory: RecipeUseCaseFactoryInterface = SQLAlchemyRecipeUseCaseFactory(db)
     use_case = factory.create_create_recipe_use_case()
-    use_case.execute(owner_id, request=request)
+    recipie = await use_case.execute(owner_id, request=request)
 
     return {
-        "id": str(request.id),
+        "id": str(recipie.id),
         "name": request.name,
         "message": "Recipe created successfully"
     }
@@ -42,7 +42,8 @@ async def list_recipes(
 ):
     factory: RecipeUseCaseFactoryInterface = SQLAlchemyRecipeUseCaseFactory(db)
     use_case = factory.create_list_recipes_use_case()
-    return use_case.execute(owner_id=UUID(user_data.get("sub")))
+    recipies = await use_case.execute(owner_id=UUID(user_data.get("sub")))
+    return recipies
 
 @app.exception_handler(DomainException)
 def domain_exception_handler(request, exc: DomainException):

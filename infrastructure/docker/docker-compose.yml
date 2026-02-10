@@ -9,7 +9,7 @@ services:
     ports:
       - "5432:5432"
     environment:
-      POSTGRES_MULTIPLE_DATABASES: keycloak,recipe_db
+      POSTGRES_MULTIPLE_DATABASES: keycloak,recipe_db,recipe_db_test
       POSTGRES_USER: ${DB_USER}
       POSTGRES_PASSWORD: ${DB_PASSWORD}
     volumes:

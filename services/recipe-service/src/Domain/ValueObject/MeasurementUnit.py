@@ -14,3 +14,4 @@ class MeasurementUnit(Enum):
     FOOT = "ft"
     TEASPOON = "tsp"
     TABLESPOON = "tbsp"
+    UNIT = "u"

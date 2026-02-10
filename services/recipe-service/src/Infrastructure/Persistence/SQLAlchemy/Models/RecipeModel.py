@@ -2,8 +2,9 @@ from uuid import UUID
 from typing import List
 
 from Infrastructure.Persistence.Database import Base
+from Domain.ValueObject.MeasurementUnit import MeasurementUnit
 
-from sqlalchemy import String, Text, ForeignKey, Float
+from sqlalchemy import String, Text, ForeignKey, Float, Enum
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 class RecipeModel(Base):
@@ -41,7 +42,10 @@ class IngredientModel(Base):
 
     name: Mapped[str] = mapped_column(String(100), nullable=False)
     amount: Mapped[float] = mapped_column(Float, nullable=False)
-    unit: Mapped[str] = mapped_column(String(50), nullable=False)
+    unit: Mapped[str] = mapped_column(
+        Enum(MeasurementUnit, native_enum = False),
+        nullable=False
+    )
 
     recipe: Mapped["RecipeModel"] = relationship(
         "RecipeModel",

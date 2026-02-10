@@ -11,7 +11,7 @@ class CreateRecipeUseCase:
     def __init__(self, repository: RecipeRepositoryInterface):
         self.repository = repository
     
-    def execute(self, owner_id: UUID, request: CreateRecepieRequest) -> Recipe:
+    async def execute(self, owner_id: UUID, request: CreateRecepieRequest) -> Recipe:
         
         ingredients = []
         # Convert ingredients_data to Ingredient objects
@@ -31,5 +31,5 @@ class CreateRecipeUseCase:
             ingredients=ingredients
         )
 
-        self.repository.save(recipe)
+        await self.repository.save(recipe)
         return recipe

@@ -36,4 +36,17 @@ class RecipeRepository(RecipeRepositoryInterface):
         models = result.scalars().all()
 
         return [RecipeMapper.to_domain(model) for model in models]
+
+    async def find_by_id(self, recipe_id: UUID) -> Recipe | None:
+        query = (
+            select(RecipeModel)
+            .where(RecipeModel.id == recipe_id)
+            .options(selectinload(RecipeModel.ingredients))
+        )
+        result = await self.session.execute(query)
+        model = result.scalar_one_or_none()
         
+        if not model:
+            return None
+            
+        return RecipeMapper.to_domain(model)    

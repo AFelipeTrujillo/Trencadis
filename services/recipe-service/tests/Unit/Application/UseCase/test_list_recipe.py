@@ -1,14 +1,14 @@
-
-from unittest.mock import Mock
+import pytest
+from unittest.mock import Mock, AsyncMock
 from uuid import uuid4
 
 from Domain.Entity.Recipe import Recipe
 from Application.DTO.RecipeDTOs import RecipeListResponse
 from Application.UseCase.ListRecipesUseCase import ListRecipesUseCase
 
-
-def test_list_recipes_executes_successfully():
-    mock_repo = Mock()
+@pytest.mark.asyncio
+async def test_list_recipes_executes_successfully():
+    mock_repo = AsyncMock()
     use_case = ListRecipesUseCase(repository=mock_repo)
 
     owner_id = uuid4()
@@ -34,7 +34,7 @@ def test_list_recipes_executes_successfully():
         recipe_2
     ]
 
-    result = use_case.execute(owner_id=owner_id)
+    result = await use_case.execute(owner_id=owner_id)
 
     assert len(result) == 2
     assert result[0].name == "Recipe 1"

@@ -8,8 +8,8 @@ class ListRecipesUseCase:
     def __init__(self, repository: RecipeRepositoryInterface) -> List[RecipeListResponse]:
         self.repository = repository
 
-    def execute(self, owner_id: UUID):
-        recipes = self.repository.find_by_owner(owner_id)
+    async def execute(self, owner_id: UUID):
+        recipes = await self.repository.find_by_owner(owner_id)
 
         return [
             RecipeListResponse(

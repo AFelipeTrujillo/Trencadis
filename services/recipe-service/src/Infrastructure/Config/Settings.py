@@ -6,8 +6,10 @@ class Settings(BaseSettings):
     PROJECT_NAME: str = "Trencadís Recipe Service"
     DEBUG: bool = False
 
-    KEYCLOAK_BASE_URL : str = Field(default="http://keycloak:8080", env="KEYCLOAK_BASE_URL")
-    KEYCLOAK_REALM : str = Field(default="trencadis-home", env="KEYCLOAK_REALM")
+    KEYCLOAK_BASE_URL : str = Field(default="http://keycloak:8080", validation_alias="KEYCLOAK_BASE_URL")
+    KEYCLOAK_REALM : str = Field(default="trencadis-home", validation_alias="KEYCLOAK_REALM")
+    DATABASE_URL : str = Field(default="postgresql://user:pass@localhost:5432/recipes", validation_alias="DATABASE_URL")
+    TEST_DATABASE_URL : str = Field(default="postgresql://user:pass@localhost:5432/recipes", validation_alias="TEST_DATABASE_URL")
 
     @property
     def keycloak_realm_url(self) -> str:
@@ -24,8 +26,6 @@ class Settings(BaseSettings):
     @property
     def keycloak_token_url(self) -> str:
         return f"{self.keycloak_realm_url}/protocol/openid-connect/token"
-    
-    DATABASE_URL : str = Field(default="postgresql://user:pass@localhost:5432/recipes", env="DATABASE_URL")
 
     model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8")
 

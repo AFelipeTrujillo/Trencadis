@@ -20,6 +20,7 @@ class RecipeMapper():
 
         return Recipe(
             id=model.id,
+            name=model.name,
             description=model.description,
             owner_id=model.owner_id,
             ingredients=ingredients

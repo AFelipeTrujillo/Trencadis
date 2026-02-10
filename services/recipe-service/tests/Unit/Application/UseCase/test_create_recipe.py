@@ -1,14 +1,15 @@
 import pytest
-from unittest.mock import Mock
+from unittest.mock import Mock, AsyncMock
 from uuid import uuid4
 
 from Domain.ValueObject.MeasurementUnit import MeasurementUnit
 from Application.UseCase.CreateRecipeUseCase import CreateRecipeUseCase
 from Application.DTO.RecipeDTOs import CreateRecepieRequest
 
-def test_create_recipe_executes_successfully():
+@pytest.mark.asyncio
+async def test_create_recipe_executes_successfully():
 
-    mock_repo = Mock()
+    mock_repo = AsyncMock()
     use_case = CreateRecipeUseCase(repository=mock_repo)
 
     owner_id = uuid4()
@@ -26,7 +27,7 @@ def test_create_recipe_executes_successfully():
         ]
     )
 
-    result = use_case.execute(
+    result = await use_case.execute(
         owner_id= owner_id , 
         request=request_dto
     )
