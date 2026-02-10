@@ -27,3 +27,30 @@ docker-compose up -d
 ```
 
 **Note:** Ensure you have created your local .env file based on .env.example before running the command.
+
+# Persistence Layer
+The persistence layer is implemented using **SQLAlchemy 2.0** with an asynchronous approach via `asyncpg`.
+
+```mermaid
+erDiagram
+    RECIPE ||--o{ INGREDIENT : contains
+    RECIPE {
+        uuid id PK
+        string name
+        string description
+        uuid owner_id
+        datetime created_at
+    }
+    INGREDIENT {
+        uuid id PK
+        uuid recipe_id FK
+        string name
+        float amount
+        string unit "VARCHAR (Enum mapping)"
+    }
+```
+
+## Database Schema
+We follow a relational approach optimized for the Recipe Aggregate:
+- **Recipes Table**: Stores the root entity. The `owner_id` field is indexed to optimize queries by user (Identity from Keycloak).
+- **Ingredients Table**: Stores recipe components. It maintains a foreign key relationship with the Recipes table with `ON DELETE CASCADE`.
