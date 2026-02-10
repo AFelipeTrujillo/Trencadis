@@ -13,7 +13,7 @@
 
 **Trencadís** is a home management ecosystem built to demonstrate modern software engineering practices. Inspired by the mosaic technique of **Catalan Modernism**, this project assembles diverse technologies (Python, Go, Java, Angular) into a cohesive, scalable, and robust distributed system.
 
-## 🏛 Architecture Overview
+## Architecture Overview
 This project follows the **Clean Architecture** principles by Robert C. Martin. Each service is designed with a strict separation of concerns, ensuring the business logic remains independent of frameworks and external agencies.
 
 - **Frontend:** Angular 17+ (Reactive State Management)
@@ -22,7 +22,34 @@ This project follows the **Clean Architecture** principles by Robert C. Martin. 
 - **Spending Service:** Java & Spring Boot (Enterprise-grade robustness)
 - **Infrastructure:** Kubernetes (Orchestration) & GitHub Actions (CI/CD)
 
-## 🛠 Project Roadmap
+# Persistence Layer
+The persistence layer is implemented using **SQLAlchemy 2.0** with an asynchronous approach via `asyncpg`.
+
+```mermaid
+erDiagram
+    RECIPE ||--o{ INGREDIENT : contains
+    RECIPE {
+        uuid id PK
+        string name
+        string description
+        uuid owner_id
+        datetime created_at
+    }
+    INGREDIENT {
+        uuid id PK
+        uuid recipe_id FK
+        string name
+        float amount
+        string unit "VARCHAR (Enum mapping)"
+    }
+```
+
+## Database Schema
+We follow a relational approach optimized for the Recipe Aggregate:
+- **Recipes Table**: Stores the root entity. The `owner_id` field is indexed to optimize queries by user (Identity from Keycloak).
+- **Ingredients Table**: Stores recipe components. It maintains a foreign key relationship with the Recipes table with `ON DELETE CASCADE`.
+
+## Project Roadmap
 
 ### Phase 1: Core Infrastructure & Identity 🔐
 - [x] Monorepo structure and documentation.
@@ -54,13 +81,13 @@ This project follows the **Clean Architecture** principles by Robert C. Martin. 
 - [ ] **CI/CD:** Automated pipelines with GitHub Actions.
 - [ ] Monitoring and Logging (ELK or Prometheus/Grafana).
 
-## 👨‍💻 Engineering Standards
+## Engineering Standards
 - **Clean Code:** Self-documenting code, SRP, and meaningful naming.
 - **SOLID Principles:** Strictly followed across all languages.
 - **Testing:** Unit and Integration tests for every business use case.
 - **Documentation:** Architecture decision records (ADR) and C4 Diagrams.
 
-## 📐 Engineering Principles
+## Engineering Principles
 
 This project serves as a practical implementation of high-level software engineering standards.
 
